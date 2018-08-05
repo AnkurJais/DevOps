@@ -15,7 +15,7 @@ pipeline {
 	}
 	
     stages {
-    	stage('Initialize'){
+    	stage ('Initialize'){
 			steps{
 		    	sh '''
                     echo "PATH = ${PATH}"
@@ -25,7 +25,7 @@ pipeline {
     	}
     	
     	stage('SCM-Checkout') {
-    	  step {
+    	  steps {
     	  	git branch: 'feature/framework01', credentialsId: 'a0082836-39e5-4b66-bde5-c9acaa391ef4', url: 'git@github.com:AnkurJais/facebooklearning.git'
     	  }   	  
     	}
