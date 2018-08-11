@@ -3,7 +3,7 @@ pipeline {
     parameters {
     string(name: 'Email', defaultValue: 'ankur.javatm@gmail.com', description: 'Whom should I send the email?')
 	string(name: 'Slave', defaultValue: 'jenkins-slave', description: 'Where you want to execute the build?')
-	string(name: 'GIT_BRANCH', defaultValue: 'feature/framework01', description: 'Git Branch you want to use as source.')
+	string(name: 'BRANCH', defaultValue: 'feature/framework01', description: 'Git Branch you want to use as source.')
 	string(name: 'GIT_GOAL', defaultValue: 'clone', description: 'Git goal you want to use.')
 	string(name: 'GIT_REPO', defaultValue: 'git@github.com:AnkurJais/facebooklearning.git', description: 'Git repository url you want to use.')
     }
@@ -32,9 +32,9 @@ pipeline {
 	stage("SCM-Workspace Update") {
 	    steps {
 			script {
-				PRO_WORKSPACE = "${WORKSPACE}/${GIT_BRANCH,fullName=false}"
+				PRO_WORKSPACE = "${WORKSPACE}/${BRANCH}"
 				echo "${WORKSPACE}"
-				echo "${GIT_BRANCH,fullName=false}"
+				echo "${BRANCH}"
 				echo "${PRO_WORKSPACE}"
 			}
 		}		
@@ -47,9 +47,9 @@ pipeline {
       steps {
 		script {
 		   dir("${PRO_WORKSPACE}") {
-			if("${GIT_BRANCH}" != "") {
+			if("${BRANCH}" != "") {
 			    git(
-			        branch: "${GIT_BRANCH,fullName=false}",
+			        branch: "${BRANCH}",
        				url: "${GIT_REPO}",
        				credentialsId: "${GIT_CREDENTIAL}"
     			)
