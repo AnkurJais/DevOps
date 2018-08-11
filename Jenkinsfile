@@ -5,7 +5,7 @@ pipeline {
 	string(name: 'Slave', defaultValue: 'jenkins-slave', description: 'Where you want to execute the build?')
 	string(name: 'GIT_BRANCH', defaultValue: 'feature/framework01', description: 'Git Branch you want to use as source.')
 	string(name: 'GIT_GOAL', defaultValue: 'clone', description: 'Git goal you want to use.')
-	string(name: 'GIT_REPO', defaultValue: 'AnkurJais@github.com:facebooklearning.git', description: 'Git repository url you want to use.')
+	string(name: 'GIT_REPO', defaultValue: 'git@github.com:AnkurJais/facebooklearning.git', description: 'Git repository url you want to use.')
     }
 
 	agent { 
@@ -47,10 +47,17 @@ pipeline {
 		   echo "http://${GIT_CREDENTIAL}@${GIT_REPO}"
 		   dir("${PRO_WORKSPACE}") {
 			if("${GIT_BRANCH}" != "") {
-			    sh('sshpass -p ${GIT_CREDENTIAL} git clone -b ${GIT_BRANCH} ssh://${GIT_REPO} facebook')
+			    git(
+       				url: "${GIT_REPO}",
+       				credentialsId: ${GIT_CREDENTIAL},
+       				branch: "${GIT_BRANCH}"
+    			)
 			}
 			else {
-			    sh('git clone http://${GIT_CREDENTIAL}@${GIT_REPO} facebook')
+			    git(
+       				url: "${GIT_REPO}",
+       				credentialsId: ${GIT_CREDENTIAL}
+    			)
 			}
 		   }
 		}
