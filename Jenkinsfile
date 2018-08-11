@@ -45,11 +45,11 @@ pipeline {
 		script {
 		   dir("${PRO_WORKSPACE}") {
 			if("${GIT_BRANCH}" != "") {
-			    git(
+			    git
+			        branch: "${GIT_BRANCH}",
        				url: "${GIT_REPO}",
-       				credentialsId: "${GIT_CREDENTIAL}",
-       				branch: "${GIT_BRANCH}"
-    			)
+       				credentialsId: "${GIT_CREDENTIAL}"
+    			
 			}
 			else {
 			    git(
