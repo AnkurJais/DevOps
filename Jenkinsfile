@@ -32,9 +32,9 @@ pipeline {
 	stage("SCM-Workspace Update") {
 	    steps {
 			script {
-				PRO_WORKSPACE = "${WORKSPACE}/${GIT_BRANCH}"
+				PRO_WORKSPACE = "${WORKSPACE}/${GIT_BRANCH,fullName=false}"
 				echo "${WORKSPACE}"
-				echo "${GIT_BRANCH}"
+				echo "${GIT_BRANCH,fullName=false}"
 				echo "${PRO_WORKSPACE}"
 			}
 		}		
@@ -49,7 +49,7 @@ pipeline {
 		   dir("${PRO_WORKSPACE}") {
 			if("${GIT_BRANCH}" != "") {
 			    git(
-			        branch: "${GIT_BRANCH}",
+			        branch: "${GIT_BRANCH,fullName=false}",
        				url: "${GIT_REPO}",
        				credentialsId: "${GIT_CREDENTIAL}"
     			)
