@@ -69,6 +69,7 @@ pipeline {
             steps {
             echo "In Build Step"
 		dir("${PRO_WORKSPACE}") {
+					sh "echo $JAVA_HOME"
 	                echo "This time, the Maven version should be 3.3.9"    
 			        sh	"mvn -version"
 			        sh	"mvn clean"
