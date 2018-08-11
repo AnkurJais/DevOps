@@ -47,7 +47,9 @@ pipeline {
 			if("${GIT_BRANCH}" != "") {
 			    git(
        				url: "${GIT_REPO}",
-       				credentialsId: "${GIT_CREDENTIAL}"   			)
+       				credentialsId: "${GIT_CREDENTIAL}",
+       				branch: "${GIT_BRANCH}"
+    			)
 			}
 			else {
 			    git(
