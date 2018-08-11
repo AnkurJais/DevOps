@@ -6,6 +6,7 @@ pipeline {
 	string(name: 'BRANCH', defaultValue: 'feature/framework01', description: 'Git Branch you want to use as source.')
 	string(name: 'GIT_GOAL', defaultValue: 'clone', description: 'Git goal you want to use.')
 	string(name: 'GIT_REPO', defaultValue: 'git@github.com:AnkurJais/facebooklearning.git', description: 'Git repository url you want to use.')
+	string(name: 'MVN_GOAL', defaultValue: 'clean install exec:java', description: 'Git goal you want to use.')
     }
 
 	agent { 
@@ -70,12 +71,7 @@ pipeline {
             echo "In Build Step"
 		dir("${PRO_WORKSPACE}") {
 					sh "echo $JAVA_HOME"
-	                echo "This time, the Maven version should be 3.3.9"    
-			        sh	"mvn -version"
-			        sh	"mvn clean"
-			        sh	"mvn install"
-			        sh	"mvn exec:java -Dexec.mainClass=learning.jenkins.facebook.Driver"
-			        
+			        sh("mvn ${MVN_GOAL} -Dexec.mainClass=learning.automation.facebook.driver.Driver			        
 	                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
 		}
             }
