@@ -71,7 +71,7 @@ pipeline {
             echo "In Build Step"
 		dir("${PRO_WORKSPACE}") {
 					sh "echo $JAVA_HOME"
-			        sh("mvn ${MVN_GOAL} -Dexec.mainClass=learning.automation.facebook.driver.Driver			        
+			        sh("mvn ${MVN_GOAL} -Dexec.mainClass=learning.automation.facebook.driver.Driver)	        
 	                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
 		}
             }
