@@ -5,7 +5,7 @@ pipeline {
 	string(name: 'Slave', defaultValue: 'jenkins-slave', description: 'Where you want to execute the build?')
 	string(name: 'GIT_BRANCH', defaultValue: 'feature/framework01', description: 'Git Branch you want to use as source.')
 	string(name: 'GIT_GOAL', defaultValue: 'clone', description: 'Git goal you want to use.')
-	string(name: 'GIT_REPO', defaultValue: 'git@github.com:AnkurJais/facebooklearning.git', description: 'Git repository url you want to use.')
+	string(name: 'GIT_REPO', defaultValue: 'AnkurJais@github.com:facebooklearning.git', description: 'Git repository url you want to use.')
     }
 
 	agent { 
