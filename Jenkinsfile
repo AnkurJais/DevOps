@@ -47,10 +47,10 @@ pipeline {
 		   echo "http://${GIT_CREDENTIAL}@${GIT_REPO}"
 		   dir("${PRO_WORKSPACE}") {
 			if("${GIT_BRANCH}" != "") {
-			    sh('sshpass -p ${GIT_CREDENTIAL} git clone -b ${GIT_BRANCH} ssh://${GIT_REPO}')
+			    sh('sshpass -p ${GIT_CREDENTIAL} git clone -b ${GIT_BRANCH} ssh://${GIT_REPO} facebook')
 			}
 			else {
-			    sh('git clone http://${GIT_CREDENTIAL}@${GIT_REPO}')
+			    sh('git clone http://${GIT_CREDENTIAL}@${GIT_REPO} facebook')
 			}
 		   }
 		}
