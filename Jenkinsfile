@@ -43,15 +43,11 @@ pipeline {
 	  }
       steps {
 		script {
-		   echo "GIT CRED = ${GIT_CREDENTIAL}"
-		   echo "http://${GIT_CREDENTIAL}@${GIT_REPO}"
 		   dir("${PRO_WORKSPACE}") {
 			if("${GIT_BRANCH}" != "") {
 			    git(
        				url: "${GIT_REPO}",
-       				credentialsId: "${GIT_CREDENTIAL}",
-       				branch: "${GIT_BRANCH}"
-    			)
+       				credentialsId: "${GIT_CREDENTIAL}"   			)
 			}
 			else {
 			    git(
