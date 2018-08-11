@@ -33,6 +33,9 @@ pipeline {
 	    steps {
 			script {
 				PRO_WORKSPACE = "${WORKSPACE}/${GIT_BRANCH}"
+				echo "${WORKSPACE}"
+				echo "${GIT_BRANCH}"
+				echo "${PRO_WORKSPACE}"
 			}
 		}		
 	}
