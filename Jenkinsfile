@@ -1,7 +1,7 @@
 pipeline {
 
     parameters {
-        string(name: 'Email', defaultValue: 'ankur.javatm@gmail.com', description: 'Whom should I send the email?')
+    string(name: 'Email', defaultValue: 'ankur.javatm@gmail.com', description: 'Whom should I send the email?')
 	string(name: 'Slave', defaultValue: 'jenkins-slave', description: 'Where you want to execute the build?')
 	string(name: 'GIT_BRANCH', defaultValue: 'feature/framework01', description: 'Git Branch you want to use as source.')
 	string(name: 'GIT_GOAL', defaultValue: 'clone', description: 'Git goal you want to use.')
@@ -43,6 +43,8 @@ pipeline {
 	  }
       steps {
 		script {
+		   echo "GIT CRED = ${GIT_CREDENTIAL}"
+		   echo "http://${GIT_CREDENTIAL}@${GIT_REPO}"
 		   dir("${PRO_WORKSPACE}") {
 			if("${GIT_BRANCH}" != "") {
 			    sh('git clone -b ${GIT_BRANCH} http://${GIT_CREDENTIAL}@${GIT_REPO}')
