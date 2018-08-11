@@ -5,6 +5,7 @@ pipeline {
 	string(name: 'Slave', defaultValue: 'jenkins-slave', description: 'Where you want to execute the build?')
 	string(name: 'GIT_BRANCH', defaultValue: 'feature/framework01', description: 'Git Branch you want to use as source.')
 	string(name: 'GIT_GOAL', defaultValue: 'clone', description: 'Git goal you want to use.')
+	string(name: 'GIT_REPO', defaultValue: 'git@github.com:AnkurJais/facebooklearning.git', description: 'Git repository url you want to use.')
     }
 
 	agent { 
@@ -36,7 +37,7 @@ pipeline {
     	
     	stage('SCM-Clone') {
 	  when {
-		environment name: "GIT_GOAL", value" "clone"
+		environment name: "GIT_GOAL", value: "clone"
 	  }
     	  steps {
 		script {
@@ -49,7 +50,6 @@ pipeline {
 			}
 		   }
 		}
-    	  	git branch: 'feature/framework01', credentialsId: 'a0082836-39e5-4b66-bde5-c9acaa391ef4', url: 'git@github.com:AnkurJais/facebooklearning.git'
     	  }   	  
     	}
     
