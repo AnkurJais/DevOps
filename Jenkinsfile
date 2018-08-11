@@ -30,16 +30,18 @@ pipeline {
     	}
 
 	stage("SCM-Workspace Update") {
-		script {
-			PRO_WORKSPACE = "${WORKSPACE}/${GIT_BRANCH}"
-		}	
+	    steps {
+			script {
+				PRO_WORKSPACE = "${WORKSPACE}/${GIT_BRANCH}"
+			}
+		}		
 	}
     	
-    	stage('SCM-Clone') {
+    stage('SCM-Clone') {
 	  when {
 		environment name: "GIT_GOAL", value: "clone"
 	  }
-    	  steps {
+      steps {
 		script {
 		   dir("${PRO_WORKSPACE}") {
 			if("${GIT_BRANCH}" != "") {
